@@ -15,6 +15,7 @@ public class PropertiesController {
     private String bookName;
     @RequestMapping("/property")
     public String helloProperty(){
+        System.out.println("helloProperty()");
         return "book name is :"+bookName+" and book author is :"+bookAuthor;
     }
 }
