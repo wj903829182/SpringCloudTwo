@@ -1,3 +1,12 @@
+spring:
+  profiles:
+    active: prod
+
+
 book:
   author: jack
   name: hello world
+
+author:
+  name: jack
+  age: 18
