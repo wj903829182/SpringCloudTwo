@@ -6,7 +6,11 @@
 
     <groupId>com.jack</groupId>
     <artifactId>SpringCloudTwo</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>comjackspringbootstarterhello</module>
+    </modules>
 
 
 </project>
