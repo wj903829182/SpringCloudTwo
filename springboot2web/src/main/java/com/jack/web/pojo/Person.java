@@ -1,5 +1,8 @@
 package com.jack.web.pojo;
 
+/**
+ * 人的java bean
+ */
 public class Person {
     private String name;
     private Integer age;
