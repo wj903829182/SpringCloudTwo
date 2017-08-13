@@ -1,5 +1,9 @@
 server:
   port: 9090
+#spring:
+  #mvc:
+    #favicon:
+      #enabled: false
   #ssl:
     #key-store: jackkeystore.p12
     #key-store-password: 123456
