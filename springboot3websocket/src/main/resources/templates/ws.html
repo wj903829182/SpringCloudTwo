@@ -46,6 +46,8 @@
             //通过stompClient.subscribe订阅/topic/getResponse目标（destination）发送的消息，
             //这个是在控制器的@SendTo中定义的
             stompClient.subscribe('/topic/getResponse',function (responsse) {
+                //返回的数据是一个对象需要通过body属性获取返回的数据json对象
+                console.log("the response is :"+responsse.body);
                 showResponse(JSON.parse(responsse.body).responseMessage);
             });
         });

@@ -1,5 +1,6 @@
 package com.jack.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jack.pojo.WiselyMessage;
 import com.jack.pojo.WiselyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 
@@ -62,6 +65,18 @@ public class WsController {
             messagingTemplate.convertAndSendToUser("jack1",
                     "/queue/notifications",principal.getName()+"-send:"+msg);
         }
+    }
+
+    @RequestMapping("/send")
+    @ResponseBody
+    public String testWebSOcket(){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("msg:","我是服务端发送的消息");
+        WiselyResponse wiselyResponse = new WiselyResponse("我是服务端发送的消息");
+        //下面方法的第二个参数要是 @SendTo注解方法上返回的参数类型
+        //使用SimpMessagingTemplate进行广播消息
+        messagingTemplate.convertAndSend("/topic/getResponse",wiselyResponse);
+        return "发送成功";
     }
 
 }
