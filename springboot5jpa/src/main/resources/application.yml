@@ -17,6 +17,9 @@ spring:
       ddl-auto: update
     #show-sql\u7528\u6765\u8BBE\u7F6Ehibernate\u64CD\u4F5C\u7684\u65F6\u5019\u5728\u63A7\u5236\u53F0\u663E\u793A\u5176\u771F\u5B9E\u7684sql\u8BED\u53E5
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
   jackson:
     serialization:
     #\u8BA9\u63A7\u5236\u5668\u8F93\u51FA\u7684json\u5B57\u7B26\u4E32\u683C\u5F0F\u66F4\u7F8E\u89C2
