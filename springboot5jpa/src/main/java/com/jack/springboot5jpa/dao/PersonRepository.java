@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * create by jack 2017/10/3
  */
-public interface PersonRepository extends JpaRepository<Person,Integer> {
+public interface PersonRepository extends CustomRepository<Person,Integer>/*extends JpaRepository<Person,Integer>*/ {
     //使用方法名查询，接受一个name参数,返回值为一个列表
     List<Person> findByAddress(String address);
 

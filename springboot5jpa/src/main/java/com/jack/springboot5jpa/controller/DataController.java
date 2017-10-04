@@ -108,4 +108,19 @@ public class DataController {
         return personPage;
     }
 
+
+    /**
+     *控制器中接受一个Person对象，当Person的name有值时会自动对name进行like查询；当age有值时，会进行等于查询；
+     * 当Person中有多个值不为空的时候，会自动构造多个查询条件;当Person所有值为空的时候，默认查询出所有记录；
+     * 注意:此处需要指出的是，在实体类中的数据类型要用包装类型，而不能用基本类型如long，int。因为在spring mvc中，使用原始
+     * 数据类型会自动初始化为0，而不是空，导致我们构造条件失败。
+     * @param person
+     * @return
+     */
+    @RequestMapping("/auto")
+    public Page<Person> auto(Person person){
+        Page<Person> personPage = personRepository.findByAuto(person,new PageRequest(0,10));
+        return personPage;
+    }
+
 }

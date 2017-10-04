@@ -1,11 +1,14 @@
 package com.jack.springboot5jpa.impl;
 
 import com.jack.springboot5jpa.dao.CustomRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
-
+import static com.jack.springboot5jpa.pojo.CustomerSpecs.*;
 /**
  * create by jack 2017/10/3
  */
@@ -26,8 +29,9 @@ public class CustomRepositoryImpl <T,ID extends Serializable> extends SimpleJpaR
         this.entityManager = entityManager;
     }
 
+
     @Override
-    public void doSomething(Serializable serializable) {
-        //在此定义数据访问操作，如调用findAll方法并构造一些查询条件
+    public Page<T> findByAuto(T example, Pageable pageable) {
+        return findAll(byAuto(entityManager,example),pageable);
     }
 }
