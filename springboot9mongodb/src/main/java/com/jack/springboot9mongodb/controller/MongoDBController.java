@@ -26,7 +26,7 @@ public class MongoDBController {
      */
     @RequestMapping("/save")
     public Person save(){
-        Person p = new Person("jack",18);
+        Person p = new Person("jack2",20);
         Collection<Location> locations = new LinkedHashSet<>();
         Location loc1 = new Location("北京","2008");
         Location loc2 = new Location("上海","2009");
