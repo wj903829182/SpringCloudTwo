@@ -1,4 +1,4 @@
-package com.jack.springboot11springsecurity;
+package com.jack.springboot12springsecurit;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Springboot11springsecurityApplicationTests {
+public class Springboot12springsecuritApplicationTests {
 
 	@Test
 	public void contextLoads() {
