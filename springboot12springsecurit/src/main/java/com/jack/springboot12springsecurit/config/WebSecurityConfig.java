@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .successForwardUrl("/security/index")
+                .successForwardUrl("/security/index")//登入成功后的跳转路径
                 .failureUrl("/login?error")
                 .permitAll()//定制登入行为，登入页面可任意访问
                 .and()
