@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>websocket chat</title>
 </head>
 <body>
 
+<div>
+    <label>输入信息：</label><input id="id" width="100px"/>
+    <button id="btn">发送消息</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="disconnection">断开websocket连接</button>
+</div>
+<div id="test">
+
+</div>
+
 </body>
+
+<script th:src="@{sockjs.min.js}"></script>
+<!--<script th:src="@{stomp.min.js}"></script>-->
+<script th:src="@{jquery-3.2.1.min.js}"></script>
+
+<script>
+    var websocket;
+
+    if ('WebSocket' in window) {
+        //websocket = new WebSocket("ws://" + document.location.host + "/webSocketServer");
+        websocket = new WebSocket("ws://localhost:9090/webSocketServer");
+    } else if ('MozWebSocket' in window) {
+        websocket = new MozWebSocket("ws://" + document.location.host + "/webSocketServer");
+    } else {
+        websocket = new SockJS("http://" + document.location.host + "/sockjs/webSocketServer");
+    }
+
+    websocket.onopen = function(evnt) {};
+    websocket.onmessage = function(evnt) {
+        //$("#test").html("(<font color='red'>" + evnt.data + "</font>)");
+        console.log("onmessage----",evnt.data);
+        $("#test").html(evnt.data);
+    };
+
+    websocket.onerror = function(evnt) {
+        console.log("onerror----",evnt.data);
+    }
+    websocket.onclose = function(evnt) {
+        console.log("onclose----",evnt.data);
+    }
+
+    $('#btn').on('click', function() {
+        if (websocket.readyState == websocket.OPEN) {
+            var msg = $('#id').val();
+            //调用后台handleTextMessage方法
+            websocket.send(msg);
+        } else {
+            alert("连接失败!");
+        }
+    });
+
+    $('#disconnection').on('click', function() {
+        if (websocket.readyState == websocket.OPEN) {
+            websocket.close();
+            console.log("关闭websocket连接成功");
+        }
+    });
+
+</script>
+
 </html>
