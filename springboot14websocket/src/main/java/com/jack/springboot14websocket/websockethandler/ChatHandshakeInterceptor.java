@@ -16,9 +16,11 @@ public class ChatHandshakeInterceptor extends HttpSessionHandshakeInterceptor {
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
         System.out.println("Before Handshake");
+        //System.out.println("0-----"+((ServletServerHttpRequest) request).getServletRequest().getSession().getId());
         if (request instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
             HttpSession session = servletRequest.getServletRequest().getSession(false);
+            System.out.println("beforeHandshake ---"+session.getId());
             if (session != null){ //使用userName区分WebSocketHandler，以便定向发送消息 String userName =
                 //String userName = session.getAttribute(Constants.SESSION_USERNAME);
                 String userName = (String) session.getAttribute("jack");

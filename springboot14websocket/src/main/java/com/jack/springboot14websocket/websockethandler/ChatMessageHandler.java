@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * create by jack 2017/10/25
  */
 public class ChatMessageHandler extends TextWebSocketHandler {
-    private static final ArrayList<WebSocketSession> users;// 这个会出现性能问题，最好用Map来存储，key用userid
+    public static final ArrayList<WebSocketSession> users;// 这个会出现性能问题，最好用Map来存储，key用userid
     private static Logger logger = LoggerFactory.getLogger(ChatMessageHandler.class);
 
     static {
@@ -70,6 +70,7 @@ public class ChatMessageHandler extends TextWebSocketHandler {
      * @param message
      */
     public void sendMessageToUsers(TextMessage message) {
+        System.out.println("sendMessageToUsers");
         for (WebSocketSession user : users) {
             try {
                 if (user.isOpen()) {
@@ -86,6 +87,7 @@ public class ChatMessageHandler extends TextWebSocketHandler {
         if (session.isOpen()) {
             session.close();
         }
+        System.out.println("handleTransportError...........");
         logger.debug("websocket connection closed......");
         users.remove(session);
     }
@@ -93,6 +95,7 @@ public class ChatMessageHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
         logger.debug("websocket connection closed......");
+        System.out.println("afterConnectionClosed...............");
         users.remove(session);
     }
 

@@ -9,6 +9,8 @@
 <div>
     <label>输入信息：</label><input id="id" width="100px"/>
     <button id="btn">发送消息</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="connection">websocket连接</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <button id="disconnection">断开websocket连接</button>
 </div>
 <div id="test">
@@ -33,7 +35,9 @@
         websocket = new SockJS("http://" + document.location.host + "/sockjs/webSocketServer");
     }
 
-    websocket.onopen = function(evnt) {};
+    websocket.onopen = function(evnt) {
+        console.log("onopen----",evnt.data);
+    };
     websocket.onmessage = function(evnt) {
         //$("#test").html("(<font color='red'>" + evnt.data + "</font>)");
         console.log("onmessage----",evnt.data);
@@ -60,9 +64,24 @@
     $('#disconnection').on('click', function() {
         if (websocket.readyState == websocket.OPEN) {
             websocket.close();
+            //websocket.onclose();
             console.log("关闭websocket连接成功");
         }
     });
+
+    $('#connection').on('click', function() {
+        if (websocket.readyState == websocket.CLOSED) {
+            websocket.open();
+            //websocket.onclose();
+            console.log("打开websocket连接成功");
+        }
+    });
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function(){
+        websocket.close();
+    }
+
 
 </script>
 
