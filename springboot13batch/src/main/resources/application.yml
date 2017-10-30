@@ -1,0 +1,22 @@
+
+#\u542F\u52A8\u65F6\u8981\u6267\u884C\u7684job\uFF0C\u9ED8\u8BA4\u6267\u884C\u5168\u90E8job
+#spring.batch.job.name=job1,job2
+#\u662F\u5426\u81EA\u52A8\u6267\u884C\u5B9A\u4E49\u7684job\uFF0C\u9ED8\u8BA4\u662F
+#spring.batch.job.enabled=true
+#\u662F\u5426\u521D\u59CB\u5316Spring Batch\u7684\u6570\u636E\u5E93\uFF0C\u9ED8\u8BA4\u4E3A\u662F
+#spring.batch.initializer.enabled=true
+#spring.batch.schema=
+#\u8BBE\u7F6ESpring Batch\u7684\u6570\u636E\u5E93\u8868\u7684\u524D\u7F00
+#spring.batch.table-prefix=
+server:
+  port: 9090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/jack
+    username: root
+    password: root
+  batch:
+    job:
+      enabled: false
